@@ -29,7 +29,7 @@ if [ -f ".git/hooks/pre-push" ]; then
 fi
 
 # Download the pre-push hook
-HOOK_URL="https://raw.githubusercontent.com/anhdam-arent3d/git-hooks/main/pre-push.sh"
+HOOK_URL="https://cdn.jsdelivr.net/gh/anhdam-arent3d/git-hooks@main/pre-push.sh"
 
 echo -e "${BLUE}📥 Downloading pre-push hook from GitHub...${NC}"
 
