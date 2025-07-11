@@ -53,7 +53,10 @@ if [ "$main_commits" -gt 0 ]; then
     echo -e "3) ${YELLOW}Continue push anyway${NC}"
     echo -e "4) ${RED}Cancel push${NC}"
     
+    # Fix for input reading in git hooks
+    exec < /dev/tty
     read -p "Choose an option (1-4): " choice
+    exec <&-
     
     case $choice in
         1)
@@ -87,8 +90,12 @@ if [ "$main_commits" -gt 0 ]; then
             echo -e "${RED}❌ Push cancelled by user${NC}"
             exit 1
             ;;
+        "")
+            echo -e "${RED}❌ No input received. Push cancelled.${NC}"
+            exit 1
+            ;;
         *)
-            echo -e "${RED}❌ Invalid choice. Push cancelled.${NC}"
+            echo -e "${RED}❌ Invalid choice '$choice'. Push cancelled.${NC}"
             exit 1
             ;;
     esac
